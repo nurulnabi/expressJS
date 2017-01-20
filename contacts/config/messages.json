@@ -1,0 +1,14 @@
+{
+	"invalidMail":"Invalid email: { username@addr.abc }",
+	"invalidMobile":"Invalid mobile number: { +1 (xxx) xxx-xxxx }",
+	"invalidName":"Pass only characters in name nameLength[4-20]",
+	"searchFail":"No contact found",
+	"createFail":"Unable to save contact",
+	"createExist":"contact already exists",
+	"createSuccess":"contact saved",
+	"deleteFail":"Unable to delete contact",
+	"deleteSuccess":"Contact deleted Successfully",
+	"updateFail":"Unable to update contact",
+	"updateUpdateNull":"You need to pass an array(update) indicating which fields to update",
+	"updateSuccess":"Contact updated Successfully"
+}
