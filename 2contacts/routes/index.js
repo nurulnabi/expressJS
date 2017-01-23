@@ -1,10 +1,11 @@
 
-var 	express 	= 	require('express'),
-		app 		= 	express(),
-		router 		=	express.Router(),
-		msg 		= 	require('../config/messages.json'),
-		validate 	=	require('../utils/validation'),
-		dbQuery 	= 	require('../dbConnection/dbQuery')
+var 	express 		= 	require('express'),
+		app 			= 	express(),
+		router 			=	express.Router(),
+		msg 			= 	require('../config/messages.json'),
+		validate 		=	require('../utils/validation'),
+		dbQuery 		= 	require('../dbConnection/dbQuery'),
+		analyseResult	= 	require('../utils/analyseResult')
 		;		
 
 
@@ -34,11 +35,9 @@ router.post('/create',function createRoute(req,res){
 		function(err,result){
 			var check = result.result;
 			if(err){
-					res.send(msg.createFail+err);
-			}else if(check.ok==1 && check.nModified ==0 && check.upserted == null){
-				res.send(msg.createExist);
-			}else if(check.ok==1 && check.nModified ==0 && check.upserted != null){
-				res.send(msg.createSuccess);
+					res.send(msg.createFail);
+			}else{
+				analyseResult.ofCreateContact(result,res);
 			}
 		});
 	}
@@ -54,7 +53,7 @@ router.post('/search',function searchRoute(req,res){
 	}else {
 		dbQuery.searchContact(filter,function(err,doc){
 			if(!doc){
-					res.send(msg.searchFail+err);
+					res.send(msg.searchFail);
 			}else{
 				var result = "Name: "+doc.name+"<br>email: "+doc.email+"<br>mobile: "+doc.phone;
 				res.end(result);
@@ -87,12 +86,8 @@ router.post('/update',function updateRoute(req,res){
 			var check = result.result;
 			if(err){
 				res.send(msg.updateFail+err);
-			}else if(check.nModified == 0 && check.n == 1){
-				res.send(msg.updateDuplicate+result);
-			}else if(check.nModified == 0 && check.n == 0){
-				res.send(msg.updateFail+result);
 			}else {
-				res.send(msg.updateSuccess);
+				analyseResult.ofUdateContact(result,res);
 			}
 		});
 	}
@@ -108,10 +103,8 @@ router.post('/delete',function deleteRoute(req,res){
 		dbQuery.deleteContact({email:req.body.email},function(err,result){
 			if(err){
 					res.send(msg.deleteFail+err);
-			}else if(result.result.n == 0){
-				res.send(msg.deleteFail);
 			}else {
-				res.send(msg.deleteSuccess);
+				analyseResult.ofDeleteContact(result,res);
 			}
 		});
 	}

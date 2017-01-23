@@ -2,7 +2,7 @@
 * @Author: MD NOORUL NABI ANSARI
 * @Date:   2017-01-20 15:58:55
 * @Last Modified by:   noor
-* @Last Modified time: 2017-01-23 11:41:53
+* @Last Modified time: 2017-01-23 14:17:50
 */
 
 var express 	= 	require("express"),
@@ -19,7 +19,7 @@ var express 	= 	require("express"),
 
 
 //first make db connection then start the server to listen
-dbConn.makeConnection(function(collDb){
+dbConn.makeConnection(function(){
 	app.listen(3000,function(){
 		console.log("Server listening on port 3000");
 		app.use("/",routes);
