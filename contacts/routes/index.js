@@ -1,15 +1,10 @@
 
 var 	express 	= 	require('express'),
 		app 		= 	express(),
-		router 		=	express.Router,
-		bodyParser	=	require('body-parser'),
+		router 		=	express.Router(),
 		msg 		= 	require('../config/messages.json'),
-		validate 	=	require('../utils/validation');
-		
-
-console.log(router);
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());							//change bodyParser fn call to desired format
+		validate 	=	require('../utils/validation')
+		;		
 
 // router.use(function timeLog (req, res, next) {
 //   console.log('Time: ', Date.now())
@@ -20,6 +15,7 @@ app.use(bodyParser.json());							//change bodyParser fn call to desired format
 router.get('/',function(req,res){
 	res.end("use post method to use contact method");
 });
+
 
 router.post('/',function defaultRoute(req,res){
 	console.log("client requested");
@@ -135,4 +131,4 @@ router.post('/delete',function deleteRoute(req,res){
 	}
 });
 
-exports.router = router;
+module.exports = router;

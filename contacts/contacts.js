@@ -2,7 +2,7 @@
 * @Author: MD NOORUL NABI ANSARI
 * @Date:   2017-01-19 14:54:39
 * @Last Modified by:   noor
-* @Last Modified time: 2017-01-20 12:19:49
+* @Last Modified time: 2017-01-23 10:45:43
 */
 
 var express        =         require("express"),
@@ -30,6 +30,7 @@ MongoClient.connect(URL,function(err,db){		//this will open a connection for for
 		console.log("server listening on port 3000");
 	});
 });
+
 
 //*********************find a contact******************************//
 app.post('/search',function(req,res){

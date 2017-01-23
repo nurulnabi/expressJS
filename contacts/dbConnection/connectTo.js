@@ -2,7 +2,7 @@
 * @Author: MD NOORUL NABI ANSARI
 * @Date:   2017-01-20 12:25:49
 * @Last Modified by:   noor
-* @Last Modified time: 2017-01-20 18:22:22
+* @Last Modified time: 2017-01-23 11:00:20
 */
 /*
 *	IMPORTANT: This connection servers request on the basis of request connection pool
@@ -18,7 +18,9 @@ var emitter		=	require('events'),
 	dbConfig	=	require('../config/dbConfig.json'),
 	objectDb,		//will hold the mongodb connection object
 	collDb,			//will hold the mongodb particular collection
-	nameColl;		//will hold the collection which is supposed to be operated
+	nameColl,		//will hold the collection which is supposed to be operated
+	msgg = "noor"
+	;
 
 var URL = "mongodb://"+dbConfig.dbHost+":"+dbConfig.dbPort+"/"+dbConfig.dbName;
 nameColl = dbConfig.dbCollName;
@@ -32,9 +34,7 @@ function handleConn(err,db){
 	assert.equal(null,err);				//stops the program if database connection fails priting the error
 	exports.objectDb = objectDb = db;
 	exports.collDb   = collDb   = objectDb.collection(nameColl);
-	eventEmtr.emit('handleConn');		//start the server once connection to database is successful
+	eventEmtr.emit('handleConn',collDb);		//start the server once connection to database is successful
 }
-
-
 
 exports.makeConnection = makeConnection;
