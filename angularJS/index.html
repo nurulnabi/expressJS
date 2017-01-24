@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myModule">
+    <head>
+        <meta charset="utf-8">
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+        <script type="text/javascript" src="angularScript.js"></script>
+        <style type="text/css">
+        	.data tr:nth-child(2n){ 
+        			background: #b3b3b3;
+        		}
+        	.thead{
+        		background: #b3b3b3;
+        	}
+        	.data{
+        		border-collapse: collapse;
+        	}
+        	.hvr:hover{
+        		cursor: pointer;
+        	}
+        	th,td{
+        		text-align: center;
+        		width: 150px;
+        	}
+        </style>
+    </head>
+    <body>
+    	<div ng-controller="apController_a">
+    	  <p>Name: <input type="text" ng-model="name"></p>{{saluation}} {{name+","}} {{message}}<br><br>
+    	  <!-- <img ng-src="{{ name+'-flag' }}" alt="{{ name+'-flag.png' }}"/> -->
+    		<input type="number" step="1" min="1" max="{{technologies.length}}" ng-model="rowLimit">
+    		<input type="button" value="next" ng-click="next()"><br>
+    		Search By Technology:<input type="text" ng-model="searchTxt.name">
+    		<br><br>
+	    	<table class="data">
+	    		<thead class="thead">
+	    			<th>Technology</th>
+	    			<th ng-click="sortBy('likes')" class="hvr">Likes</th>
+	    			<th ng-click="sortBy('dislikes')" class="hvr">Disikes</th>
+	    			<th ng-click="sortBy('salary')" class="hvr">Salary</th>
+	    			<th>Your Response</th>
+	    		</thead>
+	    		<tr ng-repeat="technology in technologies | filter:searchTxt
+	    												  | limitTo:rowLimit:beginFrom
+	    												  | orderBy:sortOn:ascDsc">
+	    			<td>
+	    				{{technology.name}}
+	    			</td>
+	    			<td>
+	    				{{technology.likes}}
+	    			</td>
+	    			<td>
+	    				{{technology.dislikes}}
+	    			</td>
+	    			<td>
+	    				{{technology.salary | number :"1"}}
+	    			</td>
+	    			<td>
+	    				<input type="button" value="Like" ng-click="like(technology)">
+	    				<input type="button" value="Dislike" ng-click="dislike(technology)">
+	    			</td>
+
+	    		</tr>{{searchTxt+" "+rowLimit+" "+beginFrom}}
+	    	</table>
+    	</div>
+    </body>
+</html>
