@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="httpReq">
+    <head>
+        <meta charset="utf-8">
+         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.js"></script>
+        <script src="httpReq.js">
+        </script>
+    </head>
+    <body>
+    <div ng-controller="requst">
+    	<ul>
+    		<li ng-repeat="obj in dta | limitTo:5">
+    			{{obj.name}}
+    			<ul>
+    				<li ng-repeat="val in obj">
+    					{{val}}
+    				</li>
+    			</ul>
+    		</li>
+    	</ul>
+    </div>
+    </body>
+</html>

@@ -2,7 +2,7 @@
 * @Author: MD NOORUL NABI ANSARI
 * @Date:   2017-01-24 14:37:00
 * @Last Modified by:   noor
-* @Last Modified time: 2017-01-24 18:40:22
+* @Last Modified time: 2017-01-25 13:07:02
 */
 
 /**
@@ -12,11 +12,17 @@
 */
 var myApp = angular.module('myModule', []);
 
+myApp.controller('apController_b',function($scope,$stringParse){
+	$scope.process = function(inputStr){
+		$scope.outputStr = $stringParse.breakCamelCase(inputStr);
+	}
+});
+
 myApp.controller('apController_a',function($scope){
 	$scope.saluation = "Hi!";
 	$scope.message = "You are with NOOR";
 	$scope.flag = "indian-flag.png";
-
+	
 	var technologies = [
 		    { "salary": 994650, "dislikes": 30, "likes": 25, "name": "C++" },
 		    { "salary": 930735, "dislikes": 27, "likes": 37, "name": "C#" },

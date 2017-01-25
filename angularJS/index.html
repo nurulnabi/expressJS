@@ -4,6 +4,7 @@
         <meta charset="utf-8">
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
         <script type="text/javascript" src="angularScript.js"></script>
+        <script type="text/javascript" src="stringParse.js"></script>
         <style type="text/css">
         	.data tr:nth-child(2n){ 
         			background: #b3b3b3;
@@ -24,7 +25,13 @@
         </style>
     </head>
     <body>
-    	<div ng-controller="apController_a">
+        <div ng-controller="apController_b" ng-hide="false">
+            Your Input:<input type="text" ng-model="inputStr"><br>
+            Processed Output:
+            <input type="text" ng-model="outputStr"><input type="button" ng-click="process(inputStr)" value="Process">
+            <br><br>
+        </div>
+    	<div ng-controller="apController_a" ng-hide="true">
     	  <p>Name: <input type="text" ng-model="name"></p>{{saluation}} {{name+","}} {{message}}<br><br>
     	  <!-- <img ng-src="{{ name+'-flag' }}" alt="{{ name+'-flag.png' }}"/> -->
     		<input type="number" step="1" min="1" max="{{technologies.length}}" ng-model="rowLimit">
@@ -62,5 +69,6 @@
 	    		</tr>{{searchTxt+" "+rowLimit+" "+beginFrom}}
 	    	</table>
     	</div>
+        
     </body>
 </html>
